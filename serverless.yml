@@ -1,0 +1,9 @@
+ZomatoOverview:
+    handler: indexLambdaFlow.handleEvent
+    name: ${self:provider.stage}-ZomateOverview
+    timeout: 300
+    memorySize: 512
+    events:
+      - sqs:
+          arn: ${self:custom.queues.z_menu_promo_queue_arn.${self:provider.stage}}
+          batchSize: 1

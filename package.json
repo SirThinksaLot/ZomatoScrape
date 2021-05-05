@@ -1,0 +1,19 @@
+{
+  "name": "zomatoscrape",
+  "version": "1.0.0",
+  "description": "scrape overview tab on zomato url",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "author": "Daksh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "puppeteer": "^9.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "serverless": "^2.39.2"
+  }
+}

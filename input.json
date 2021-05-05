@@ -1,0 +1,23 @@
+{
+	"Records": [
+        {
+            "messageId": "3f412aec-e3b4-415b-b479-5542055d77fc",
+            "receiptHandle": "AQEBMU6AwpTa6l2xKHx6j8GH6cwDWAqij/Rg+BRYkd2aD6wJaHKW/So0OlcDhP4kydPiDzLb1n+WE5L9temFi9+pPFsZxM1rzfTaknlEjRf/hxIDxRphSSJPLu2ROHTUCerTsh2tEOnhFPu5Lc6ViBqFEdU7sfLRFhqaSyVntRJyOoVfXD83w27w4MhJarXDlYlCHSYtkuCwWjq/CHmegsw5HFS/AruTeCp0RGi0X1Kn6SD07hnREma2uSG5blvFKuN5X3daNoFIj0bBbC6HPleyi3I6bbfQXJKbVpZafeZ8I50=",
+            "body": "{\"zUrl\": \"https://www.zomato.com/bhopal/twist-of-tadka-hoshangabad-road\"}",
+            "attributes": {
+                "ApproximateReceiveCount": "9",
+                "SentTimestamp": "1615275393455",
+                "SequenceNumber": "18860254574434031872",
+                "MessageGroupId": "group-d7601a7cb5300a7dca089606c6239a562be90820-80aa-11eb-a58c-b7586b8373ba",
+                "SenderId": "AIDAJ6T6AA7XZKQKKQQGQ",
+                "MessageDeduplicationId": "messagededup-d7601a7cb5300a7dca089606c6239a562be90820-80aa-11eb-a58c-b7586b8373ba",
+                "ApproximateFirstReceiveTimestamp": "1615275604533"
+            },
+            "messageAttributes": {},
+            "md5OfBody": "d7601a7cb5300a7dca089606c6239a56",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:us-east-2:734596990435:Z_Menu_Promo_Handler.fifo",
+            "awsRegion": "us-east-2"
+        }
+    ]
+}
