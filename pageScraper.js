@@ -81,11 +81,11 @@ const scraperObject = {
                 else
                     cuisinesString = cuisinesString + ',' + cuisinesBoxesValue;
 
-                return {
-                    cuisine : cuisines,
-                    cuisineString : cuisinesString
-                }
             };
+            return {
+                cuisine: cuisines,
+                cuisineString: cuisinesString
+            }
         }
 
         async function averageCostData(overviewTab){
