@@ -16,6 +16,14 @@ const scraperObject = {
 
         let parentHandle = await page.$('.sc-1mo3ldo-0') ;
         let [overviewTab] = await parentHandle.$x('./section[4]') ;
+        let scriptTagHandle = await page.$x('/html/body/script') ;
+        let scriptData = await getScriptDataFunc(scriptTagHandle) ;
+
+        responseObject['res_id'] = scriptData.res_id ;
+        responseObject['name'] = scriptData.name ;
+        responseObject['rating'] = scriptData.rating ;
+        
+        //let windowObj = await scriptTagHandle.getProperty('window');
         responseObject['about_this_place'] = await getAboutThisPlaceData(overviewTab) ;
         responseObject['menu'] = {};
         responseObject['menu']['allMenuLink'] = await menuLinks(overviewTab);
@@ -157,6 +165,55 @@ const scraperObject = {
             let [addressStringPTag] = await overviewTab.$x('./section/article/section/p');
             let addressString = await page.evaluate(el=>el.textContent,addressStringPTag);
             return addressString ;
+        }
+
+        async function getScriptDataFunc(scriptTagHandleArray){
+            let correctScriptText = null;
+            for(let i = 0 ; i < scriptTagHandleArray.length ; i++){
+                let scriptText = await page.evaluate(el => el.innerText, scriptTagHandleArray[i]);
+                if (scriptText.includes('window.__PRELOADED_STATE__')){
+                        correctScriptText = scriptText;
+                        break ;
+                }
+            } ;
+            requiredText = correctScriptText.split("parse(")[1];
+            let prunedString = requiredText.trim();
+            let removingEndBracket = requiredText.substring(0, prunedString.length - 1);
+            let prunedStringWithoutSlashes = JSON.parse(removingEndBracket);
+
+            let res_id = getResID(prunedStringWithoutSlashes);
+            let name = getName(prunedStringWithoutSlashes);
+            let rating  = getRating(prunedStringWithoutSlashes);
+
+            return {
+                res_id ,name , rating
+            }
+
+            function getResID(scrapeString){
+                let splitStringAfterRes = scrapeString.split(`resId`)[1] ;
+                let splitStringAfterColon = splitStringAfterRes.split(`:`)[1] ;
+                let splitStringBeforeComma = splitStringAfterColon.split(`,`)[0] ;
+                return splitStringBeforeComma ;
+            }
+
+            function getName(scrapeString){
+                let spliteStringAfterName = scrapeString.split(`pageTitle":"`)[1] ;
+                let splitStringBeforePageDescription = spliteStringAfterName.split(`","pageDescription`)[0] ;
+                return splitStringBeforePageDescription ;
+            }
+
+            function getRating(scrapeString){
+                let splitAfterHasFakeReviews = scrapeString.split(`has_fake_reviews":`)[1] ;
+                let has_fake_reviews = splitAfterHasFakeReviews.split(`,`)[0] ;
+                let splitAfterAggregateRating = scrapeString.split('aggregate_rating":')[1];
+                let aggregate_rating = splitAfterAggregateRating.split(`,`)[0];
+                let cleaningAggregateRating = aggregate_rating.split(`"`)[1] ;
+                cleaningAggregateRating = cleaningAggregateRating.split(`"`)[0] ;
+                return {
+                    has_fake_reviews : parseInt(has_fake_reviews),
+                    aggregate_rating : cleaningAggregateRating,
+                }
+            }
         }
     }
 }
