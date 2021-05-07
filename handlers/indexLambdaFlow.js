@@ -1,5 +1,5 @@
-const browserObject = require('./browser');
-const scraperController = require('./pageController');
+const browserObject = require('../utils/browser');
+const scraperController = require('../utils/pageController');
 
 //Start the browser and create a browser instance
 // Pass the browser instance to the scraper controller
@@ -12,14 +12,6 @@ let pageScrapeHandler = async (resolve, reject, reqObj) => {
                 type: 'Error',
                 entity: 'Zomato Overview',
                 message: '[Z Menu Promos Handler] No z url found'
-            });
-        }
-        if (!reqObj.workflowId) {
-            console.error('[Z Menu Promos Handler] No workflowId found');
-            throw ({
-                type: 'Error',
-                entity: 'Z-Menu-Promos-Handler',
-                message: '[Z Menu Promos Handler] No workflowId found'
             });
         }
         let browserInstance = await browserObject.startBrowser();

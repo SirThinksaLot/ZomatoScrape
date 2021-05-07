@@ -10,20 +10,20 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\index.js"
+            "program": "${workspaceFolder}\\handlers\\index.js"
         },
         {
             "type": "node",
             "request": "launch",
             "name": "run ZomateOverviewScrape",
-            "program": "${workspaceRoot}/node_modules/.bin/sls",
+            "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless",
             "args": [
                 "invoke",
                 "local",
                 "-f",
                 "ZomateOverview",
                 "--path",
-                "input.json"
+                "\\test\\input.json"
             ]
         }
     ]
