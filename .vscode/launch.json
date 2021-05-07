@@ -13,9 +13,9 @@
             "program": "${workspaceFolder}\\handlers\\index.js"
         },
         {
-            "type": "node",
+            "type": "pwa-node",
             "request": "launch",
-            "name": "run ZomateOverviewScrape",
+            "name": "run overviewCrawl",
             "program": "${workspaceRoot}\\node_modules\\serverless\\bin\\serverless",
             "args": [
                 "invoke",

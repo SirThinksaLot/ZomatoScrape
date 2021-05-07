@@ -84,10 +84,7 @@ const scraperObject = {
                 let cuisinesBoxesValue = await page.evaluate(el => el.textContent, cuisinesBoxes[i]);
                 cuisines.push(cuisinesBoxesValue);
 
-                if (cuisinesString === '')
-                    cuisinesString = cuisinesString + cuisinesBoxesValue
-                else
-                    cuisinesString = cuisinesString + ',' + cuisinesBoxesValue;
+                cuisinesString = cuisinesString === ''?cuisinesString + cuisinesBoxesValue: cuisinesString + ',' + cuisinesBoxesValue ;    
 
             };
             return {
@@ -149,11 +146,7 @@ const scraperObject = {
             let phoneString = '' ;
             for(let i = 0 ; i < contactDetailsPTag.length ; i++){
                 let individualPTagValue = await page.evaluate(el => el.textContent, contactDetailsPTag[i]);
-
-                if(phoneString === '')
-                phoneString = phoneString + individualPTagValue ;
-                else
-                phoneString = phoneString + ',' + individualPTagValue ;
+                phoneString = phoneString === ''? phoneString + individualPTagValue: phoneString + ',' + individualPTagValue ;
             };
             return {
                 title : "Phone Numbers",
