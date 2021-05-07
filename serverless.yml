@@ -1,6 +1,14 @@
-ZomatoOverview:
-    handler: indexLambdaFlow.handleEvent
-    name: ${self:provider.stage}-ZomateOverview
+service: myService
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+
+functions:
+  overviewCrawl:
+    handler: handlers/indexLambdaFlow.handleEvent
+    name: ${self:provider.stage}-overviewCrawl
     timeout: 300
     memorySize: 512
     events:

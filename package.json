@@ -4,8 +4,8 @@
   "description": "scrape overview tab on zomato url",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "sls invoke local -f overviewCrawl -p ./tests/input.json"
   },
   "author": "Daksh",
   "license": "ISC",

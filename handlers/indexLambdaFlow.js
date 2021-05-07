@@ -16,6 +16,7 @@ let pageScrapeHandler = async (resolve, reject, reqObj) => {
         }
         let browserInstance = await browserObject.startBrowser();
         let scrapedJson = await scraperController(browserInstance, reqObj.zUrl);
+        console.log("scrapedJson", JSON.stringify(scrapedJson, null, '\t'));
         resolve({
             statusCode: 200
         });
@@ -36,7 +37,7 @@ module.exports.handleEvent = async (event, context) => {
         }
         let reqObj = JSON.parse(event.Records[0].body);
         try {
-            await pageScrapeHandler(resolve, reject, reqObj);
+            pageScrapeHandler(resolve, reject, reqObj);
         } catch (err) {
             reject(err);
         }

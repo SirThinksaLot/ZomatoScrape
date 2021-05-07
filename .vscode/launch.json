@@ -21,9 +21,9 @@
                 "invoke",
                 "local",
                 "-f",
-                "ZomateOverview",
+                "overviewCrawl",
                 "--path",
-                "\\test\\input.json"
+                "\\tests\\input.json"
             ]
         }
     ]
